@@ -27,22 +27,26 @@ class Todolist extends React.Component{
                         onChange={this.handleInputChange.bind(this)}/>
                     <button onClick={this.handleBtnClick.bind(this)}>提交</button>
                     <ul>
-                            {
-                                this.state.list.map((item, index) => {
-                                    return (
-                                        <div>
-                                            {/* <li
-                                        key={index}
-                                        onClick={this.handleItemDelete.bind(this, index)}
-                                        dangerouslySetInnerHTML={{__html: item}}
-                                    >
-                                    </li>*/}
-                                            <TodoItem content={item}/>
-                                        </div>
+                      {
+                        this.state.list.map((item, index) => {
+                          return (
+                            <div>
+                              {/* <li
+                          key={index}
+                          onClick={this.handleItemDelete.bind(this, index)}
+                          dangerouslySetInnerHTML={{__html: item}}
+                      >
+                      </li>*/}
+                              <TodoItem
+                                  content={item}
+                                  index={index}
+                                  deleteItem={this.handleItemDelete.bind(this)}
+                              />
+                            </div>
 
-                                    )
-                                })
-                            }
+                          )
+                        })
+                      }
                     </ul>
                 </div>
             </Fragment>
