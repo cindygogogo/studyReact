@@ -3,8 +3,9 @@
  */
 // eslint-disable-next-line
 import React, {Fragment, Component} from 'react';
-import './style.css'
+// 一般倾向先引入组件，再引入样式
 import TodoItem from './TodoItem'
+import './style.css'
 
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
@@ -14,6 +15,10 @@ class Todolist extends React.Component{
             inputValue: '',
             list: []
         }
+        // 组件初始化的时候修改this绑定
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleBtnClick = this.handleBtnClick.bind(this)
+        this.handleItemDelete = this.handleItemDelete.bind(this)
     }
     render() {
         return (
@@ -24,57 +29,51 @@ class Todolist extends React.Component{
                         id="insertArea"
                         className="input"
                         value={this.state.inputValue}
-                        onChange={this.handleInputChange.bind(this)}/>
-                    <button onClick={this.handleBtnClick.bind(this)}>提交</button>
-                    <ul>
-                      {
-                        this.state.list.map((item, index) => {
-                          return (
-                            <div>
-                              {/* <li
-                          key={index}
-                          onClick={this.handleItemDelete.bind(this, index)}
-                          dangerouslySetInnerHTML={{__html: item}}
-                      >
-                      </li>*/}
-                              <TodoItem
-                                  content={item}
-                                  index={index}
-                                  deleteItem={this.handleItemDelete.bind(this)}
-                              />
-                            </div>
-
-                          )
-                        })
-                      }
-                    </ul>
+                        onChange={this.handleInputChange}/>
+                    <button onClick={this.handleBtnClick}>提交</button>
                 </div>
+                <ul>
+                  { this.getTodoItem() }
+                </ul>
             </Fragment>
         );
     }
-    handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value
+    getTodoItem () {
+       return this.state.list.map((item, index) => {
+            return (
+                // key放在循环的最外层
+                <TodoItem
+                    // key->虚拟DOM
+                    key={index}
+                    content={item}
+                    index={index}
+                    deleteItem={this.handleItemDelete}
+                />
+            )
         })
-        // console.log(this)
-        // this.state.inputValue = e.target.value
-        // console.log(e.target.value);
+    }
+    handleInputChange(e) {
+        // 异步，虚拟DOM知识点
+        // （当把一个对象变成函数的时候，报错，在外层把变量保存，然后在内层使用）
+        const value = e.target.value
+        this.setState( () => ({
+            inputValue: value
+        }) )
     }
     handleBtnClick () {
-        this.setState({
-            list: [...this.state.list, this.state.inputValue],
+        this.setState((prevState) => ({
+            list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        })
+        }))
     }
     handleItemDelete (index) {
         // immutable
         // state 不允许做任何的改变
-        const list = [...this.state.list]
-        list.splice(index, 1)
-        this.setState({
-            list: list,
+        this.setState((prevState)=>{
+            const list = [...prevState.list]
+            list.splice(index, 1)
+            return { list }
         })
-       // console.log(index)
     }
 }
 
@@ -91,3 +90,17 @@ export default Todolist;
 // dangerouslySetInnerHTML={{__html: item}}
 // 4.label 增加for属性
 // htmlFor
+
+// 围绕React衍生出的思考
+// 1。react是声明式开发减少dom操作的代码量
+// 与之对应的是命令式开发->直接操作dom jquery/原生
+// 声明式开发：根据数据构建
+// 2。可以与其他框架并存
+// 只负责id=root部分的渲染 只管理自己管理的dom
+// 3。组件化
+// （1）组件定义：类通过继承React.Component -> class TodoItem extends React.Component
+// （2）组件 首字母大写
+// （3）树状结构：父组件通过属性给子组件传值，子组件操作父组件的数据：父组件传递一个方法，子组件调用这个方法间接传值
+// （4）单向数据流，单向传递。子组件只能使用，不能修改
+// （5）视图层框架，仅负责数据和页面渲染，大型项目的组件通信交给数据层框架比如Redux、flux
+// （6）函数式编程：易维护、面向测试、
