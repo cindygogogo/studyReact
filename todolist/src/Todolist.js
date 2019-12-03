@@ -5,12 +5,14 @@
 import React, {Fragment, Component} from 'react';
 // 一般倾向先引入组件，再引入样式
 import TodoItem from './TodoItem'
+import Test from './Test'
 import './style.css'
 
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
     constructor (props) {
         super(props)
+        // 当组件的state或者props发生改变时，render函数就会重新执行
         this.state = {
             inputValue: '',
             list: []
@@ -35,6 +37,7 @@ class Todolist extends React.Component{
                 <ul>
                   { this.getTodoItem() }
                 </ul>
+                <Test content={this.state.inputValue}/>
             </Fragment>
         );
     }
@@ -104,3 +107,10 @@ export default Todolist;
 // （4）单向数据流，单向传递。子组件只能使用，不能修改
 // （5）视图层框架，仅负责数据和页面渲染，大型项目的组件通信交给数据层框架比如Redux、flux
 // （6）函数式编程：易维护、面向测试、
+
+// 4-3 props，state与render函数的关系
+// 理解为什么数据发生变化，
+// 数据和页面进行联动，底层原理讲解
+// 当组件的state或者props发生改变时，自己的render函数就会重新执行
+// 当父组件的render函数被运行时，它的子组件的render都将被重新运行
+
