@@ -5,7 +5,6 @@
 import React, {Fragment, Component} from 'react';
 // 一般倾向先引入组件，再引入样式
 import TodoItem from './TodoItem'
-import Test from './Test'
 import './style.css'
 
 // Fragment 占位符 消除最外层div
@@ -30,14 +29,15 @@ class Todolist extends React.Component{
                     <input
                         id="insertArea"
                         className="input"
+                        // react 是数据驱动的 不建议使用ref，直接操作dom元素，会出现问题
+                        ref={(input) => {this.input=input}}
                         value={this.state.inputValue}
                         onChange={this.handleInputChange}/>
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
-                <ul>
+                <ul ref={ (ul) => {this.ul = ul}}>
                   { this.getTodoItem() }
                 </ul>
-                <Test content={this.state.inputValue}/>
             </Fragment>
         );
     }
@@ -55,10 +55,11 @@ class Todolist extends React.Component{
             )
         })
     }
-    handleInputChange(e) {
+    handleInputChange() {
         // 异步，虚拟DOM知识点
         // （当把一个对象变成函数的时候，报错，在外层把变量保存，然后在内层使用）
-        const value = e.target.value
+        // const value = e.target.value
+        const value = this.input.value
         this.setState( () => ({
             inputValue: value
         }) )
@@ -67,7 +68,11 @@ class Todolist extends React.Component{
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        }))
+        }), () => {
+            // console.log(this.ul.querySelectorAll('div').length)
+        })
+        // 在setState【异步】运行之前执行，这么写是错的
+        console.log(this.ul.querySelectorAll('div').length)
     }
     handleItemDelete (index) {
         // immutable
@@ -114,3 +119,7 @@ export default Todolist;
 // 当组件的state或者props发生改变时，自己的render函数就会重新执行
 // 当父组件的render函数被运行时，它的子组件的render都将被重新运行
 
+// 4-7 ref
+// 1。在react中为了获取dom元素 使用ref，react是数据驱动，因此尽量避免直接操作dom元素
+// 2。但是在复杂业务场景中，不得不使用。当ref和setState一起使用的时候，要注意setState是异步的
+// 页面，要把操作dom的语法放在setState的第二个参数的函数里面。
