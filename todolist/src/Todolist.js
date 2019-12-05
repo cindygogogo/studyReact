@@ -5,10 +5,12 @@
 import React, {Fragment, Component} from 'react';
 // 一般倾向先引入组件，再引入样式
 import TodoItem from './TodoItem'
+import axios from 'axios'
 import './style.css'
 
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
+    // 组件一常见自动执行
     constructor (props) {
         super(props)
         // 当组件的state或者props发生改变时，render函数就会重新执行
@@ -21,7 +23,13 @@ class Todolist extends React.Component{
         this.handleBtnClick = this.handleBtnClick.bind(this)
         this.handleItemDelete = this.handleItemDelete.bind(this)
     }
+    // 在组件即将被挂载到页面的时刻自动执行
+    UNSAFE_componentWillMount () {
+        // console.log('componentWillMount')
+    }
+    // 数据变化自动执行（页面渲染）
     render() {
+        // console.log('render')
         return (
             <Fragment>
                 <div>
@@ -35,11 +43,38 @@ class Todolist extends React.Component{
                         onChange={this.handleInputChange}/>
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
-                <ul ref={ (ul) => {this.ul = ul}}>
+                <ul>
                   { this.getTodoItem() }
                 </ul>
             </Fragment>
         );
+    }
+    // 组件被挂载到页面之后，自动执行
+    componentDidMount () {
+        axios.get('http://mock-api.com/Rz317OnM.mock/api/todolist')
+            .then((res) => {
+                console.log(res.data)
+                this.setState(() => ({
+                    list: [...res.data]
+                }))
+            })
+            .catch( () => {alert('error')})
+        // console.log('componentDidMount')
+    }
+    // 组件被更新之前会会自动执行
+    // shouldComponentUpdate () {
+    //     // console.log('shouldComponentUpdate')
+    //     // return true
+    // }
+     // 组件被更新之前，它会自动执行，但是它在shouldComponentUpdate ()之后被执行
+    // 如果shouldComponentUpdate () return true，这个函数才会被执行
+    // 如果shouldComponentUpdate () return false，这个函数就不会被执行了
+    UNSAFE_componentWillUpdate () {
+        // console.log('componentWillUpdate')
+    }
+    // 组件更新完成之后会自动执行
+    componentDidUpdate () {
+        // console.log('componentDidUpdate')
     }
     getTodoItem () {
        return this.state.list.map((item, index) => {
@@ -55,11 +90,11 @@ class Todolist extends React.Component{
             )
         })
     }
-    handleInputChange() {
+    handleInputChange(e) {
         // 异步，虚拟DOM知识点
         // （当把一个对象变成函数的时候，报错，在外层把变量保存，然后在内层使用）
-        // const value = e.target.value
-        const value = this.input.value
+        const value = e.target.value
+        // const value = this.input.value
         this.setState( () => ({
             inputValue: value
         }) )
@@ -72,7 +107,7 @@ class Todolist extends React.Component{
             // console.log(this.ul.querySelectorAll('div').length)
         })
         // 在setState【异步】运行之前执行，这么写是错的
-        console.log(this.ul.querySelectorAll('div').length)
+        // console.log(this.ul.querySelectorAll('div').length)
     }
     handleItemDelete (index) {
         // immutable

@@ -7,16 +7,41 @@ class TodoItem extends React.Component{
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
+    // state 或者 props变化时render会执行
+    // 父组件的render重新执行的的时候，子组件的render函数就会被执行（性能损耗）
     render () {
-        const { content, test } = this.props
+        console.log('child render')
+        const { content } = this.props
         // return React.createElement('div', {}, 'item')
         return (
             // JSX -> React.createElement  -> 虚拟DOM (JS 对象 )-> 真实的DOM
-                <div onClick={this.handleClick}>
-                    {test}-{content}
-                </div>
+                <li onClick={this.handleClick}>
+                    {content}
+                </li>
             )
 
+    }
+    // 组件被更新之前会会自动执行
+    shouldComponentUpdate (nextProps, nextState) {
+        // 提升性能，避免组件无谓的render渲染
+        // console.log('child shouldComponentUpdate')
+        if (nextProps.content !== this.props.content) {
+            return true
+        } else {
+            return false
+        }
+    }
+    // 当一个组件从父组件接受一个参数
+    // 只要父组件的render函数重新被执行，子组件的这个生命周期函数就会被执行
+    // 换一种说法
+    // 如果这个组件第一次存在与父组件中，不会执行
+    // 如果这个组件之前已经存在父组件中，才会执行
+    UNSAFE_componentWillReceiveProps () {
+        // console.log('child componentWillReceiveProps')
+    }
+    // 当这个组件即将被从页面中剔除的时候，会被执行
+    componentWillUnmount () {
+        // console.log('child componentWillUnmount')
     }
     handleClick () {
         const { deleteItem, index } = this.props
@@ -26,14 +51,14 @@ class TodoItem extends React.Component{
 }
 
 TodoItem.propTypes = {
-    test: PropTypes.string.isRequired,
+    // test: PropTypes.string.isRequired,
     content: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     deleteItem: PropTypes.func,
     index: PropTypes.number,
 }
 
 TodoItem.defaultProps = {
-    test: 'hello world'
+    // test: 'hello world'
 }
 
 export default TodoItem

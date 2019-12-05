@@ -69,6 +69,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -80,7 +81,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -120,6 +120,7 @@
       <workItem from="1575101749384" duration="61000" />
       <workItem from="1575291693498" duration="31000" />
       <workItem from="1575363960183" duration="253000" />
+      <workItem from="1575382001166" duration="197000" />
     </task>
     <task id="LOCAL-00001" summary="虚拟DOM">
       <created>1575364017412</created>
@@ -128,22 +129,29 @@
       <option name="project" value="LOCAL" />
       <updated>1575364017412</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ref的使用">
+      <created>1575382016634</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575382016635</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="503000" />
+    <option name="totallyTimeSpent" value="700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21184371" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21428572" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.6564103" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.62564105" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.29641026" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -165,7 +173,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="虚拟DOM" />
-    <option name="LAST_COMMIT_MESSAGE" value="虚拟DOM" />
+    <MESSAGE value="ref的使用" />
+    <option name="LAST_COMMIT_MESSAGE" value="ref的使用" />
   </component>
   <component name="masterDetails">
     <states>
