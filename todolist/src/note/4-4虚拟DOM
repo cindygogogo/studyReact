@@ -1,0 +1,78 @@
+ 4-4React中的虚拟DOM
+
+ 方案一
+ 1。state 数据
+ 2。 JSX模版
+ 3。数据 +  模版结合，生成真实的DOM，来显示
+ 4。state发生改变
+ 5。数据+ 模版结合生成真实的DOM，替换原始的DOM
+
+ 缺陷
+ 第一次生成了一个完整的DOM片段
+ 第二次生成了一个完整的DOM片段
+ 第二次的DOM替换第一次的DOM，非常耗性能
+
+ 方案二
+ 1。state 数据
+ 2。 JSX模版
+ 3。数据 +  模版结合，生成真实的DOM，来显示
+ 4。state发生改变
+ 5。数据+ 模版结合生成真实的DOM，并不直接替换原始的DOM
+ 6。新的DOM（DocumentFragment）和原始的DOM最比对，找差异
+ 7。找出input框发生了变化
+ 8。只用新的DOM中的input元素，替换掉老得DOM中的input元素
+
+ 缺陷
+ 性能的提升并不明显
+
+ 方案三
+ 1。state 数据
+ 2。 JSX模版
+ 3。数据 +  模版结合，生成真实的DOM，来显示
+<div id='abc'><span>hello world</span></div>
+ 4。生成虚拟DOM（虚拟DOM就是一个JS对象，用它来描述真实DOM）（损耗的性能）
+ ['div', {id: 'abc', ['span', {}, 'hello world']}]
+ 5.state  发生变化
+ 6。数据 + 模版 生成新的虚拟DOM （极大的提升了性能）
+ ['div', {id: 'abc', ['span', {}, 'bye-bye']}]
+ 7。比较原始虚拟DOM和新的虚拟DOM的区别，找到区别是span中的内容（极大的提升了性能）
+ 8。直接操作DOM，改变span中的内容
+
+
+ 虚拟DOM是一个JS对象
+ react引入虚拟DOM为什么提高了性能？
+ 减少了对真实的创建和比对
+
+ 4-5 深入了解虚拟DOM
+
+  1。state 数据
+  2。 JSX模版
+
+  3。数据 +  模版结合，生成虚拟DOM，来显示
+   ['div', {id: 'abc', ['span', {}, 'hello world']}]
+
+  4。用虚拟DOM的结构生成真实的DOM，来显示
+    <div id='abc'><span>hello world</span></div>
+  5.state  发生变化
+
+  6。数据 + 模版 生成新的虚拟DOM
+  ['div', {id: 'abc', ['span', {}, 'bye-bye']}]
+
+  7。比较原始虚拟DOM和新的虚拟DOM的区别，找到区别是span中的内容（极大的提升了性能）
+<Diff， difference>
+  8。直接操作DOM，改变span中的内容
+
+JSX -> React.createElement  -> 虚拟DOM (JS 对象 )-> 真实的DOM
+虚拟DOM带来神什么好处？
+
+优点：
+1。性能提升，从DOM比对变成了JS比对
+2。它使得跨端应用得以实现。React Native
+
+4-6 虚拟DOM中的Diff算法
+1。setstate为什么要做成异步的
+ 性能优化，多次sarState合成一次setState，减少虚拟DOM比对。
+2。diff同层比对，逐层去比对。如果发发现不同，直接替换，后面的子层全部废弃。
+可能会造成浪费，但是简单，速度快
+3。为什么做列表循环的时候要引入key值，提高虚拟DOM比对的性能
+key值要保持稳定，能不用index就不用index

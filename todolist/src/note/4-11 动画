@@ -1,0 +1,27 @@
+4-11 React 中实现CSS过渡动画
+1。借助 transition实现渐隐渐现
+
+4-12 React中使用CSS动画效果
+什么是CSS动画效果？
+通过@keyframes定义一些动画效果
+CSS 3 实现简单的动画
+复杂的动画需要JS辅助
+
+4-13使用react-transition-group实现动画（实现复杂动画效果）
+
+yarn add react-transition-grou
+github地址：https://github.com/reactjs/react-transition-group
+docs: https://reactcommunity.org/react-transition-group/css-transition
+
+ <CSSTransition
+    in={this.state.show}
+    timeout={1000}
+    classNames='fade'
+    unmountOnExit
+    // 入场动画结束之后
+    onEntered={(el) => {el.style.color = 'blue'}}
+    // 第一次显示hello的时候，增加一个class fade-active
+    appear={true}
+ >
+   <div>hello App</div>
+ </CSSTransition>

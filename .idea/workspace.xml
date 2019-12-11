@@ -30,10 +30,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="365" />
-    <option name="y" value="185" />
-    <option name="width" value="719" />
-    <option name="height" value="558" />
+    <option name="x" value="474" />
+    <option name="y" value="23" />
+    <option name="width" value="1126" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -122,6 +122,7 @@
       <workItem from="1575363960183" duration="253000" />
       <workItem from="1575382001166" duration="197000" />
       <workItem from="1575553805476" duration="48000" />
+      <workItem from="1575947947446" duration="45000" />
     </task>
     <task id="LOCAL-00001" summary="虚拟DOM">
       <created>1575364017412</created>
@@ -144,22 +145,29 @@
       <option name="project" value="LOCAL" />
       <updated>1575553834997</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="动画">
+      <created>1575947959441</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575947959441</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="748000" />
+    <option name="totallyTimeSpent" value="793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21672772" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21916972" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.35076922" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.33435896" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.29641026" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -183,7 +191,8 @@
     <MESSAGE value="虚拟DOM" />
     <MESSAGE value="ref的使用" />
     <MESSAGE value="ajax请求" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajax请求" />
+    <MESSAGE value="动画" />
+    <option name="LAST_COMMIT_MESSAGE" value="动画" />
   </component>
   <component name="masterDetails">
     <states>

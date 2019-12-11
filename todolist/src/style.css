@@ -1,48 +1,48 @@
-/*.input {*/
-/*border: 1px solid red;*/
-/*}*/
-/*.show{*/
- /*opacity: 1;*/
- /*transition: all 1s ease-in;*/
-/*}*/
-/*.hide{*/
-/*opacity: 0;*/
-/*transition: all 1s ease-in;*/
-/*}*/
-/*.show {*/
-/*animation: show-item 2s ease-in forwards;*/
-/*}*/
-/*.hide {*/
-/*animation: hide-item 2s ease-in forwards;*/
-/*}*/
-/*@keyframes hide-item{*/
-/*0% {*/
-/*opacity: 1;*/
-/*color: red;*/
-/*}*/
-/*50% {*/
-/*opacity: 0.5;*/
-/*color: green;*/
-/*}*/
-/*100% {*/
-/*opacity: 0;*/
-/*color: blue;*/
-/*}*/
-/*}*/
-/*@keyframes show-item{*/
-/*0% {*/
-/*opacity: 0;*/
-/*color: red;*/
-/*}*/
-/*50% {*/
-/*opacity: 0.5;*/
-/*color: green;*/
-/*}*/
-/*100% {*/
-/*opacity: 1;*/
-/*color: blue;*/
-/*}*/
-/*}*/
+.input {
+border: 1px solid red;
+}
+.show{
+ opacity: 1;
+ transition: all 1s ease-in;
+}
+.hide{
+opacity: 0;
+transition: all 1s ease-in;
+}
+.show {
+animation: show-item 2s ease-in forwards;
+}
+.hide {
+animation: hide-item 2s ease-in forwards;
+}
+@keyframes hide-item{
+0% {
+opacity: 1;
+color: red;
+}
+50% {
+opacity: 0.5;
+color: green;
+}
+100% {
+opacity: 0;
+color: blue;
+}
+}
+@keyframes show-item{
+0% {
+opacity: 0;
+color: red;
+}
+50% {
+opacity: 0.5;
+color: green;
+}
+100% {
+opacity: 1;
+color: blue;
+}
+}
 /*!*第二节动画*! CSSTranstation*/
 /*入场动画执行的第一个时刻*/
 /*onEnter*/

@@ -6,7 +6,9 @@ import React, {Fragment, Component} from 'react';
 // 一般倾向先引入组件，再引入样式
 import TodoItem from './TodoItem'
 import axios from 'axios'
-import './style.css'
+// import './style.css'
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
 
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{

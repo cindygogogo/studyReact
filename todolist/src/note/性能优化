@@ -1,0 +1,5 @@
+性能优化
+1。修改.bind(this)的指向，保证整个程序中函数的this指向渲染一次，避免子组件无谓的渲染
+2。setState 内置性能提升，异步函数，将多次改变合并为一次，降低虚拟dom的比对
+3。react底层引入虚拟dom，同层比对，使用key比对的概念，提升虚拟dom比对的性能，从而提升react的性能
+2。借助shouldComponentUpdate，提高react组件的性能，避免无谓render函数的渲染

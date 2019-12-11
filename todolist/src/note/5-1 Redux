@@ -1,0 +1,13 @@
+5-1 Redux 概念简介
+1。react是一个轻量级的视图层框架
+设计理念：把数据放在store进行管理，一个组件改变了store里面的数据，其他组件就会感知到这个变化
+2。redux = reducer + flux
+
+5-2 Redux 工作流程
+
+理解成'图书馆'流程
+
+5-3 使用antd编写Todolist页面布局
+
+
+https://ant.design/docs/react/introduce-cn

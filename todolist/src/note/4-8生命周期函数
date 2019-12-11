@@ -1,0 +1,8 @@
+生命周期函数指在某一时刻组件会自动调用执行的函数
+针对每一个组件来说的
+
+生命周期函数的使用场景
+
+1。shouldComponentUpdate 在子组件里面使用，避免无谓render函数的渲染
+2。componentDidMount ajax请求的发送
+yarn add axios
