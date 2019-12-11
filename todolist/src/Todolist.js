@@ -8,8 +8,15 @@ import TodoItem from './TodoItem'
 import axios from 'axios'
 // import './style.css'
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { Input, Button, List } from 'antd';
 
-
+const data = [
+    'Racing car sprays burning fuel into crowd.',
+    'Japanese princess to wed commoner.',
+    'Australian walks 100km after outback crash.',
+    'Man charged over missing wedding girl.',
+    'Los Angeles battles huge wildfires.',
+];
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
     // 组件一常见自动执行
@@ -35,19 +42,31 @@ class Todolist extends React.Component{
         return (
             <Fragment>
                 <div>
-                    <label htmlFor="insertArea">输入内容</label>
-                    <input
-                        id="insertArea"
-                        className="input"
-                        // react 是数据驱动的 不建议使用ref，直接操作dom元素，会出现问题
-                        ref={(input) => {this.input=input}}
-                        value={this.state.inputValue}
-                        onChange={this.handleInputChange}/>
-                    <button onClick={this.handleBtnClick}>提交</button>
+                    {/*<label htmlFor="insertArea">输入内容</label>*/}
+                    {/*<input*/}
+                        {/*id="insertArea"*/}
+                        {/*className="input"*/}
+                        {/*// react 是数据驱动的 不建议使用ref，直接操作dom元素，会出现问题*/}
+                        {/*ref={(input) => {this.input=input}}*/}
+                        {/*value={this.state.inputValue}*/}
+                        {/*onChange={this.handleInputChange}/>*/}
+                    {/*<button onClick={this.handleBtnClick}>提交</button>*/}
+                    <Input placeholder={'to do info'} style={{width: '300px', marginRight: '10px'}}/>
+                    <Button type="primary">提交</Button>
                 </div>
-                <ul>
-                  { this.getTodoItem() }
-                </ul>
+                {/*<ul>*/}
+                  {/*{ this.getTodoItem() }*/}
+                {/*</ul>*/}
+                <List
+                    style={{width: '300px', marginTop: '10px'}}
+                    header={<div>Header</div>}
+                    footer={<div>Footer</div>}
+                    bordered
+                    dataSource={data}
+                    renderItem={item => (
+                        <List.Item>{item}</List.Item>
+                    )}
+                />
             </Fragment>
         );
     }
