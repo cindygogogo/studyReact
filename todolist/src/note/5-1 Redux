@@ -11,3 +11,13 @@
 
 
 https://ant.design/docs/react/introduce-cn
+
+ 5-4 创建Store
+1.安装 redux
+  yarn add redux
+2. createStore
+3.创建reducer
+4.将reducer传递给createStore
+
+5-5 action 和 reducer 的编写
+5-6 使用redux完成删除功能

@@ -5,32 +5,29 @@
 import React, {Fragment, Component} from 'react';
 // 一般倾向先引入组件，再引入样式
 import TodoItem from './TodoItem'
-import axios from 'axios'
+// import axios from 'axios'
 // import './style.css'
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Input, Button, List } from 'antd';
+import store from './store'
 
-const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-];
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
     // 组件一常见自动执行
     constructor (props) {
         super(props)
         // 当组件的state或者props发生改变时，render函数就会重新执行
-        this.state = {
-            inputValue: '',
-            list: []
-        }
-        // 组件初始化的时候修改this绑定
+        // this.state = {
+        //     inputValue: '',
+        //     list: []
+        // }
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleStoreChange = this.handleStoreChange.bind(this)
         this.handleBtnClick = this.handleBtnClick.bind(this)
         this.handleItemDelete = this.handleItemDelete.bind(this)
+        this.state = store.getState()
+        store.subscribe(this.handleStoreChange)
+        // 组件初始化的时候修改this绑定
     }
     // 在组件即将被挂载到页面的时刻自动执行
     UNSAFE_componentWillMount () {
@@ -51,20 +48,22 @@ class Todolist extends React.Component{
                         {/*value={this.state.inputValue}*/}
                         {/*onChange={this.handleInputChange}/>*/}
                     {/*<button onClick={this.handleBtnClick}>提交</button>*/}
-                    <Input placeholder={'to do info'} style={{width: '300px', marginRight: '10px'}}/>
-                    <Button type="primary">提交</Button>
+                    <Input value={this.state.inputValue}
+                        placeholder={'to do info'}
+                        style={{width: '300px', marginRight: '10px'}}
+                        onChange={this.handleInputChange}
+                    />
+                    <Button onClick={this.handleBtnClick} type="primary">提交</Button>
                 </div>
                 {/*<ul>*/}
                   {/*{ this.getTodoItem() }*/}
                 {/*</ul>*/}
                 <List
                     style={{width: '300px', marginTop: '10px'}}
-                    header={<div>Header</div>}
-                    footer={<div>Footer</div>}
                     bordered
-                    dataSource={data}
+                    dataSource={this.state.list}
                     renderItem={item => (
-                        <List.Item>{item}</List.Item>
+                        <List.Item onClick={this.handleItemDelete}>{item}</List.Item>
                     )}
                 />
             </Fragment>
@@ -72,14 +71,14 @@ class Todolist extends React.Component{
     }
     // 组件被挂载到页面之后，自动执行
     componentDidMount () {
-        axios.get('http://mock-api.com/Rz317OnM.mock/api/todolist')
-            .then((res) => {
-                console.log(res.data)
-                this.setState(() => ({
-                    list: [...res.data]
-                }))
-            })
-            .catch( () => {alert('error')})
+        // axios.get('http://mock-api.com/Rz317OnM.mock/api/todolist')
+        //     .then((res) => {
+        //         console.log(res.data)
+        //         this.setState(() => ({
+        //             list: [...res.data]
+        //         }))
+        //     })
+        //     .catch( () => {alert('error')})
         // console.log('componentDidMount')
     }
     // 组件被更新之前会会自动执行
@@ -106,7 +105,7 @@ class Todolist extends React.Component{
                     key={index}
                     content={item}
                     index={index}
-                    deleteItem={this.handleItemDelete}
+                    deleteItem={this.handleItemDelete(index)}
                 />
             )
         })
@@ -114,30 +113,48 @@ class Todolist extends React.Component{
     handleInputChange(e) {
         // 异步，虚拟DOM知识点
         // （当把一个对象变成函数的时候，报错，在外层把变量保存，然后在内层使用）
-        const value = e.target.value
+        // const value = e.target.value
+        const action = {
+            type: 'change_input_value', // 描述这个action是干嘛的
+            value: e.target.value
+        }
+        store.dispatch(action)
         // const value = this.input.value
-        this.setState( () => ({
-            inputValue: value
-        }) )
+        // this.setState( () => ({
+        //     inputValue: value
+        // }) )
+    }
+    handleStoreChange () {
+        this.setState(store.getState())
+        // console.log('change')
     }
     handleBtnClick () {
-        this.setState((prevState) => ({
-            list: [...prevState.list, prevState.inputValue],
-            inputValue: ''
-        }), () => {
-            // console.log(this.ul.querySelectorAll('div').length)
-        })
+        // this.setState((prevState) => ({
+        //     list: [...prevState.list, prevState.inputValue],
+        //     inputValue: ''
+        // }), () => {
+        //     // console.log(this.ul.querySelectorAll('div').length)
+        // })
         // 在setState【异步】运行之前执行，这么写是错的
         // console.log(this.ul.querySelectorAll('div').length)
+        const action = {
+            type: 'add_todo_item'
+        }
+        store.dispatch(action)
     }
     handleItemDelete (index) {
         // immutable
         // state 不允许做任何的改变
-        this.setState((prevState)=>{
-            const list = [...prevState.list]
-            list.splice(index, 1)
-            return { list }
-        })
+        // this.setState((prevState)=>{
+        //     const list = [...prevState.list]
+        //     list.splice(index, 1)
+        //     return { list }
+        // })
+         const action = {
+             type: 'del_todo_list_item',
+             value: index
+         }
+        store.dispatch(action)
     }
 }
 
