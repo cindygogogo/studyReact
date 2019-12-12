@@ -10,7 +10,7 @@ import TodoItem from './TodoItem'
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Input, Button, List } from 'antd';
 import store from './store'
-
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
     // 组件一常见自动执行
@@ -114,10 +114,7 @@ class Todolist extends React.Component{
         // 异步，虚拟DOM知识点
         // （当把一个对象变成函数的时候，报错，在外层把变量保存，然后在内层使用）
         // const value = e.target.value
-        const action = {
-            type: 'change_input_value', // 描述这个action是干嘛的
-            value: e.target.value
-        }
+        const action = getInputChangeAction(e.target.value)
         store.dispatch(action)
         // const value = this.input.value
         // this.setState( () => ({
@@ -137,9 +134,7 @@ class Todolist extends React.Component{
         // })
         // 在setState【异步】运行之前执行，这么写是错的
         // console.log(this.ul.querySelectorAll('div').length)
-        const action = {
-            type: 'add_todo_item'
-        }
+        const action = getAddItemAction()
         store.dispatch(action)
     }
     handleItemDelete (index) {
@@ -150,10 +145,7 @@ class Todolist extends React.Component{
         //     list.splice(index, 1)
         //     return { list }
         // })
-         const action = {
-             type: 'del_todo_list_item',
-             value: index
-         }
+         const action = getDeleteItemAction(index)
         store.dispatch(action)
     }
 }

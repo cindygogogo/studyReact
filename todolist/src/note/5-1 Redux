@@ -21,3 +21,19 @@ https://ant.design/docs/react/introduce-cn
 
 5-5 action 和 reducer 的编写
 5-6 使用redux完成删除功能
+
+5-7 Actiontypes的拆分
+5-8 actionCreator的统一创建
+提高代码可维护性，做自动化测试方便
+
+5-9 Redux知识点复习补充
+1。redux设计和使用的三项原则
+store是唯一的
+只有store能改变自己的内容（store拿到reducer返回的数据，自己给自己更新的）
+reducer必须是纯函数（纯函数指的是，给定固定的输入就一定有固定的输出，而且不会有任何副作用）
+
+2。核心API
+createStore
+store.dispatch
+store.getState
+store.subscribe
