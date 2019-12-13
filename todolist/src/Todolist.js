@@ -7,10 +7,9 @@ import React, {Fragment, Component} from 'react';
 import TodoItem from './TodoItem'
 // import axios from 'axios'
 // import './style.css'
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { Input, Button, List } from 'antd';
 import store from './store'
 import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
+import TodoListUI from './TodolistUI'
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
     // 组件一常见自动执行
@@ -36,38 +35,13 @@ class Todolist extends React.Component{
     // 数据变化自动执行（页面渲染）
     render() {
         // console.log('render')
-        return (
-            <Fragment>
-                <div>
-                    {/*<label htmlFor="insertArea">输入内容</label>*/}
-                    {/*<input*/}
-                        {/*id="insertArea"*/}
-                        {/*className="input"*/}
-                        {/*// react 是数据驱动的 不建议使用ref，直接操作dom元素，会出现问题*/}
-                        {/*ref={(input) => {this.input=input}}*/}
-                        {/*value={this.state.inputValue}*/}
-                        {/*onChange={this.handleInputChange}/>*/}
-                    {/*<button onClick={this.handleBtnClick}>提交</button>*/}
-                    <Input value={this.state.inputValue}
-                        placeholder={'to do info'}
-                        style={{width: '300px', marginRight: '10px'}}
-                        onChange={this.handleInputChange}
-                    />
-                    <Button onClick={this.handleBtnClick} type="primary">提交</Button>
-                </div>
-                {/*<ul>*/}
-                  {/*{ this.getTodoItem() }*/}
-                {/*</ul>*/}
-                <List
-                    style={{width: '300px', marginTop: '10px'}}
-                    bordered
-                    dataSource={this.state.list}
-                    renderItem={item => (
-                        <List.Item onClick={this.handleItemDelete}>{item}</List.Item>
-                    )}
-                />
-            </Fragment>
-        );
+        return <TodoListUI
+            inputValue={this.state.inputValue}
+            list={this.state.list}
+            handleInputChange={this.handleInputChange}
+            handleBtnClick={this.handleBtnClick}
+            handleItemDelete={this.handleItemDelete}
+        />
     }
     // 组件被挂载到页面之后，自动执行
     componentDidMount () {
