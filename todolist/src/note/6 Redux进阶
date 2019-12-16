@@ -5,3 +5,21 @@ UI组件傻瓜组件，处理渲染
 
 6-2 无状态组件
 无状态组件就是一个函数,相对于普通组件性能比较高
+
+6-3 Redux中发送异步请求获取数据
+
+6-4 使用redux-thunk中间件进行ajax请求
+
+github：https://github.com/reduxjs/redux-thunk
+
+将ajax请求统一管理，复杂的逻辑放到action中处理
+当使用了redux-thunk，action就可以改成函数
+ 1.先进行redux-thunk的安装
+ 2，使用中间件 照着官方文档一步一步做配置 store/index.js
+ 3,action 中写异步的代码（对象--> 函数）
+ 4.改变store中的数据，走reducer流程
+store.dispatch()方法怎么获取？ action可以接收一个dispatch方法
+
+redux中间件指的是action和store之间
+使用中间件之前action只能是一个对象，使用中间件之后 action可以是一个函数
+对dispatch一个封装和升级
