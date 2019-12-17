@@ -8,7 +8,7 @@ import TodoItem from './TodoItem'
 // import axios from 'axios'
 // import './style.css'
 import store from './store'
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList } from './store/actionCreators'
+import { getInitList, getInputChangeAction, getAddItemAction, getDeleteItemAction} from './store/actionCreators'
 import TodoListUI from './TodolistUI'
 // Fragment 占位符 消除最外层div
 class Todolist extends React.Component{
@@ -45,9 +45,12 @@ class Todolist extends React.Component{
     }
     // 组件被挂载到页面之后，自动执行
     componentDidMount () {
-        const action = getTodoList()
-        store.dispatch(action)
+        const action = getInitList()
         console.log(action)
+        store.dispatch(action)
+        // const action = getTodoList()
+        // store.dispatch(action)
+        // console.log(action)
     }
     // 组件被更新之前会会自动执行
     // shouldComponentUpdate () {

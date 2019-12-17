@@ -23,3 +23,20 @@ store.dispatch()方法怎么获取？ action可以接收一个dispatch方法
 redux中间件指的是action和store之间
 使用中间件之前action只能是一个对象，使用中间件之后 action可以是一个函数
 对dispatch一个封装和升级
+
+6-5 redux-saga中间件的使用
+
+github:https://github.com/redux-saga/redux-saga
+
+1.安装
+2。按照官方配置文档配置store
+引入applyMiddleware
+创建sagaMiddleware
+使用这个中间件
+
+3。创建文件sagas.js
+通过sagaMiddleware运行这个文件
+
+4。sagas.js文件中一定要导出一个generator函数
+
+（非常大型的项目）将异步的方法完全放在一个文件中管理
