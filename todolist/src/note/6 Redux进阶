@@ -40,3 +40,11 @@ github:https://github.com/redux-saga/redux-saga
 4。sagas.js文件中一定要导出一个generator函数
 
 （非常大型的项目）将异步的方法完全放在一个文件中管理
+
+6-6 react-redux
+
+react-redux是一个第三方模块，可以帮助我们在react中更方便的使用redux
+1。安装
+2。核心API
+provider 连接store，它内部的组件都有能力获取到store了
+connect  做链接 让这个组件和store做连接
