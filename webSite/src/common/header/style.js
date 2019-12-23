@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import logoPic from '../../statics/logo.png';
 
+// 创建一个HeaderWrapper的组件，这个组件是一个div
 export const HeaderWrapper = styled.div`
 	z-index: 1;
 	position: relative;
 	height: 56px;
 	border-bottom: 1px solid #f0f0f0;
 `;
-
-export const Logo = styled.div`
+// styled.a.attrs({herf: '/'})
+export const Logo = styled.a`
 	position: absolute;
 	top: 0;
 	left: 0;

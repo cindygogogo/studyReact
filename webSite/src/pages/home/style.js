@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+// overflow: hidden; 触发BFC 感知left和right的高度
 export const HomeWrapper = styled.div`
 	overflow: hidden;
 	width: 960px;

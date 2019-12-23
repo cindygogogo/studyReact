@@ -1,0 +1,138 @@
+7-1.项目搭建，Styled-Components与Reset.css的结合使用
+
+安装react-create-app
+
+管理CSS样式，减少耦合性（布局组件）
+yarn add styled-components
+引入样式：import './style.js';
+
+要让其保证在所有浏览器上保持一致reset.css粘贴至style.js
+
+
+
+***********************************************************
+
+
+7-2使用styled-components完成Header组件布局（1）
+common
+有效避免CSS冲突
+
+
+
+***********************************************************
+
+
+7-4使用iconfont嵌入头部图标
+
+
+
+***********************************************************
+
+
+7-5搜索框动画效果实现
+yarn add react-transition-group
+
+
+
+***********************************************************
+
+
+7-6使用React-Redux进行应用数据的管理
+yarn add redux
+yarn add react-redux
+
+
+
+***********************************************************
+
+
+7-7使用combineReducers完成对数据的拆分管理
+reducer 存放过多的数据可能会造成代码不可维护，因此将reducer拆分成许多小的reducer，最终再做整合
+1。将header下的数据放在header下的reducer，存放默认数据和对数据的操作
+2。步骤
+header/src/index导出reducer
+src/store/reducer.js
+import { combineReducers } from 'redux-immutable';
+import { reducer as headerReducer } from '../common/header/store';
+
+const reducer = combineReducers({
+	header: headerReducer,
+});
+
+export default reducer;
+
+
+
+***********************************************************
+
+
+7-8actionCreators与constants的拆分
+
+
+***********************************************************
+
+
+
+7-9使用Immutable.js来管理store中的数据
+避免自己不小心改变state数据的
+Immutable.js 生成一个Immutable对象，这个对象不可改变，防止state被改变
+
+1。安装Immutable.js
+yarn add immutable
+GitHub：https://github.com/immutable-js/immutable-js
+
+2。reducer.js 使用get方法获取数据
+import { fromJS } from 'immutable';
+
+export default (state = defaultState, action) => {
+	switch(action.type) {
+		case constants.SEARCH_FOCUS:
+			return state.set('focused', true);
+		default:
+			return state;
+	}
+}
+3。header/index。js 使用set方法变更数据，变更原理如下
+
+const mapStateToProps = (state) => {
+	return {
+		focused: state.getIn(['header', 'focused']),
+	}
+}
+返回去修改state.set('focused', true);第二步的下半部分
+immutable对象的set方法，会结合之前的immutable对象的值和set的值，返回一个全新的对象
+
+
+
+***********************************************************
+
+
+7-10使用redux-immutable统一数据格式
+借助redux-immutable使最大的store也是一个immutable对象
+
+1。安装
+yarn add redux-immutable
+
+2。修改combineReducers  的from
+import { combineReducers } from 'redux-immutable';
+
+
+***********************************************************
+
+7-12 Ajax获取推荐数据
+
+安装redux-thunk，在action可以处理ajax请求
+
+中国件applyMiddleware
+
+create-react-app底层是一个node服务器，当请求时，想去localhost对应的路由里面去找
+如果找不到还回去public目录下面找api文件夹，找对应的json
+写一些假数据
+
+关键点：
+1。把所有获取数据的操作放到actionCreator里面，返回的结果不是对象而是一个函数
+需要使用redux-thunk，这个中间件
+2。改变store里面的数据要注意，store初始化的时候，list也被初始化称为immutable数组
+如果直接改变，会把immutable变成普通数组类型，因此需要把data也变成immutable数组传进去
+3。页面循环展示
+array（immutable）.map方法

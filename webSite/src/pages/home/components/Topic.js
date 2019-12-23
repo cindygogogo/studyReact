@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+// 和store做连接
 import { connect } from 'react-redux';
 import { TopicWrapper, TopicItem } from '../style';
 

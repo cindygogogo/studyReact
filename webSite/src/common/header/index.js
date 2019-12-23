@@ -18,8 +18,7 @@ import {
 	SearchInfoItem,
 	Addition,
 	Button
-} from './style';
-
+} from './style'; // 引入样式组件
 class Header extends Component {
 
 	getListArea() {
@@ -64,9 +63,11 @@ class Header extends Component {
 		const { focused, handleInputFocus, handleInputBlur, list, login, logout } = this.props;
 		return (
 			<HeaderWrapper>
+                {/*logo*/}
 				<Link to='/'>
 					<Logo/>
 				</Link>
+                {/*中间区域*/}
 				<Nav>
 					<NavItem className='left active'>首页</NavItem>
 					<NavItem className='left'>下载App</NavItem>
@@ -112,6 +113,9 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+        // redux-immutable
+        // 等价写法
+		// state.getIn(['header', 'focused']), = focused: state.get('header').get（'focused'),
 		focused: state.getIn(['header', 'focused']),
 		list: state.getIn(['header', 'list']),
 		page: state.getIn(['header', 'page']),

@@ -1,0 +1,14 @@
+8-1 什么是路由，如何在React中使用路由功能
+路由：根据URL的不同，显示不同的内容
+使用：
+1。安装
+yarn add react-router-dom
+2.使用
+App.js
+import { BrowserRouter, Route } from 'react-router-dom';
+
+
+***********************************************************************
+
+
+8-2 首页组件的拆分

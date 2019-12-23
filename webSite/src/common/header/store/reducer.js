@@ -10,12 +10,15 @@ const defaultState = fromJS({
 });
 
 export default (state = defaultState, action) => {
-	switch(action.type) {
+    // immutable对象的set方法，会结合之前的immutable对象的值和set的值，
+    // 返回一个全新的对象
+    switch(action.type) {
 		case constants.SEARCH_FOCUS:
 			return state.set('focused', true);
 		case constants.SEARCH_BLUR:
 			return state.set('focused', false);
 		case constants.CHANGE_LIST:
+		    // 多次调用set
 			return state.merge({
 				list: action.data,
 				totalPage: action.totalPage
