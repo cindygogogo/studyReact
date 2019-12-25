@@ -46,7 +46,7 @@ yarn add react-redux
 ***********************************************************
 
 
-7-7使用combineReducers完成对数据的拆分管理
+7-7使用 + combineReducers完成对数据的拆分管理
 reducer 存放过多的数据可能会造成代码不可维护，因此将reducer拆分成许多小的reducer，最终再做整合
 1。将header下的数据放在header下的reducer，存放默认数据和对数据的操作
 2。步骤

@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.div`
 	border-bottom: 1px solid #f0f0f0;
 `;
 // styled.a.attrs({herf: '/'})
-export const Logo = styled.a`
+export const Logo = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;

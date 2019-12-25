@@ -9,6 +9,7 @@ class Topic extends PureComponent {
 		return (
 			<TopicWrapper>
 				{
+				    // item是一个immutable对象调用get（）方法，获取里面的数据
 					list.map((item) => (
 						<TopicItem key={item.get('id')}>
 							<img

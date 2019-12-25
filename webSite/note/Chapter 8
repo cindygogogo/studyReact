@@ -12,3 +12,18 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 
 8-2 首页组件的拆分
+
+
+***********************************************************************
+
+
+8-10 首页性能优化及路由跳转
+Component ---->  PureComponent
+底层实现了一个shouldComponentUpate（ ）
+同immutable.js结合，没什么问题
+不用immutable.js会有坑，可以自己写shouldComponentUpate（ ）
+
+a标签做跳转，不是单页面应用
+<Link key={index} to={'/detail/' + item.get('id')}>
+	...
+</Link>

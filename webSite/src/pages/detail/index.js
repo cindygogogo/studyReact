@@ -17,6 +17,7 @@ class Detail extends PureComponent {
 	}
 
 	componentDidMount() {
+        // 通过this.props.match.params.id可以拿到参数
 		this.props.getDetail(this.props.match.params.id);
 	}
 }

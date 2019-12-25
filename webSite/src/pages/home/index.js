@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import Topic from './components/Topic';
+// import Topic from './components/Topic';
 import List from './components/List';
 import Recommend from './components/Recommend';
-import Writer from './components/Writer';
+// import Writer from './components/Writer';
 import { actionCreators } from './store';
 import { BackTop } from './style';
 
@@ -23,13 +23,13 @@ class Home extends PureComponent {
 		return (
 			<HomeWrapper>
 				<HomeLeft>
-					<img className='banner-img' alt='' src="//upload.jianshu.io/admin_banners/web_images/4318/60781ff21df1d1b03f5f8459e4a1983c009175a5.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540" />
-					<Topic />
+					<img className='banner-img' alt='' src="https://upload.jianshu.io/admin_banners/web_images/4841/377fe305a0c05c9711f6532c6ac1fce6538e12df.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540" />
+					{/*<Topic />*/}
 					<List />
 				</HomeLeft>
 				<HomeRight>
 					<Recommend />
-					<Writer />
+					{/*<Writer />*/}
 				</HomeRight>
 				{ this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>顶部</BackTop> : null}
 			</HomeWrapper>
@@ -60,6 +60,7 @@ const mapDispatch = (dispatch) => ({
 		dispatch(actionCreators.getHomeInfo());
 	},
 	changeScrollTopShow() {
+	    // console.log(e)
 		if (document.documentElement.scrollTop > 100) {
 			dispatch(actionCreators.toggleTopShow(true))
 		}else {
